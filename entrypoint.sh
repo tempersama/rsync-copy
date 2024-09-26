@@ -12,7 +12,7 @@ else
     # If the keyis empty, it uses the password for the SCP
     echo "Trying SCP process with password"
     # Runs the SCP command
-    sshpass -p $INPUT_PASSWORD scp -P $INPUT_PORT -o StrictHostKeyChecking=no $INPUT_ORIGIN "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
+    sshpass -p $INPUT_PASSWORD scp -P $INPUT_PORT -o StrictHostKeyChecking=no -r $INPUT_ORIGIN "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
 fi
 time=$(date)
 echo "-----------------------------"
