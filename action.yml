@@ -1,6 +1,6 @@
-name: 'SCP Deployment'
-description: 'Copies the files from your repository to a remote host using SCP'
-author: 'Sebastian Rueda'
+name: 'Recursive SCP Deployment'
+description: 'Recusively copies the files from your repository to a remote host using SCP'
+author: 'temper'
 inputs:
   # $1
   port:
