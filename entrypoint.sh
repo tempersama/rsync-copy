@@ -7,10 +7,8 @@ if [[ "$INPUT_KEY" ]]; then
     chmod 400 key                  # Set the key as Read-Only
 
 	rsync -e "ssh -p $INPUT_PORT -o StrictHostKeyChecking=no -i key" \
-		"$INPUT_ORIGIN" \
+		-r "$INPUT_ORIGIN" \
 		"$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
-    # Runs the SCP command
-    scp -i key $INPUT_ORIGIN "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
 fi
 time=$(date)
 echo "-----------------------------"
