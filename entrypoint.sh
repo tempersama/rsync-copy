@@ -8,8 +8,8 @@ if [[ "$INPUT_KEY" ]]; then
     echo -e "${INPUT_KEY}" > key   # Creates a file with the key content
     chmod 400 key                  # Set the key as Read-Only
 
-	rsync -e "ssh -p $INPUT_PORT -o StrictHostKeyChecking=no -i key" \
-		-r "$INPUT_ORIGIN" \
+	rsync -v --stats -e "ssh -p $INPUT_PORT -o StrictHostKeyChecking=no -i key" \
+		"$INPUT_ORIGIN" \
 		"$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
 fi
 time=$(date)
