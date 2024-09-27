@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+set -e
+
 # Checking if the key input is not empty
 if [[ "$INPUT_KEY" ]]; then
     # If it is not empty, it uses the key for the rsync command
@@ -14,4 +16,3 @@ time=$(date)
 echo "-----------------------------"
 echo "| Files copied successfully |"
 echo "-----------------------------"
-echo "::set-output name=time::$time"
