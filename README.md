@@ -1,5 +1,8 @@
 # SCP ACTION
-***By `SRUEDA99`***
+
+***By `temper`***
+
+Original by `SRUEDA99` however I've made this work for hugo projects
 
 ## Overview
 This action to copy the files from your repository to a remote server using **SCP** (Secure Copy Protocol).
