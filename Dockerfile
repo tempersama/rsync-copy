@@ -2,10 +2,9 @@
 FROM alpine
 # Copy the content to the container.
 COPY . /
-# Grant executable permission on the script.
-RUN ["chmod", "+x", "/entrypoint.sh"]
-# Update the apk and download openssh
-RUN ["apk", "update"]
-RUN ["apk", "add", "git", "openssh"]
-# Runs the script.
+RUN chmod +x /entrypoint.sh && \
+	apk update && \
+	apk add git openssh rsync
+
+
 ENTRYPOINT [ "/entrypoint.sh" ]
