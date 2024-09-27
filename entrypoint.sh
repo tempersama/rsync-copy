@@ -7,12 +7,12 @@ if [[ "$INPUT_KEY" ]]; then
     chmod 400 key                  # Set the key as Read-Only
     echo "Trying SCP process with SSH key"
     # Runs the SCP command
-    scp -P $INPUT_PORT -o StrictHostKeyChecking=no -i key $INPUT_ORIGIN -r "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
+    scp -r -P $INPUT_PORT -o StrictHostKeyChecking=no -i key $INPUT_ORIGIN "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
 else
     # If the keyis empty, it uses the password for the SCP
     echo "Trying SCP process with password"
     # Runs the SCP command
-    sshpass -p $INPUT_PASSWORD scp -P $INPUT_PORT -o StrictHostKeyChecking=no -r $INPUT_ORIGIN "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
+    sshpass -r -p $INPUT_PASSWORD scp -P $INPUT_PORT -o StrictHostKeyChecking=no $INPUT_ORIGIN "$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
 fi
 time=$(date)
 echo "-----------------------------"
