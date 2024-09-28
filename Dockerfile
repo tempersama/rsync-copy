@@ -6,5 +6,4 @@ RUN chmod +x /entrypoint.sh && \
 	apk update && \
 	apk add git openssh rsync
 
-
 ENTRYPOINT [ "/entrypoint.sh" ]

@@ -1,5 +1,5 @@
-name: 'Recursive SCP Deployment'
-description: 'Recusively copies the files from your repository to a remote host using SCP'
+name: 'Rsync Action'
+description: 'Copies the files from your repository to a remote host using rsync'
 author: 'temper'
 inputs:
   # $1
@@ -10,7 +10,7 @@ inputs:
   host:
     description: 'IP Address or DNS of your target host'
   # $3
-  origin:
+  source:
     description: 'Source route folder'
     default: "./*"
   # $4
@@ -19,18 +19,9 @@ inputs:
   # $5
   username:
     description: 'User for remote connection'
-  # $6
-  password:
-    description: 'Password for the user'
   # $7
   key:
     description: 'Private SSH key'
-  # $8
-  passphrase:
-    description: 'Passphrase for SSH key'
-outputs:
-  time:
-    description: 'Returns the time when the script ran'
 runs:
   using: 'docker'
   image: 'Dockerfile'

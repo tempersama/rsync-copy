@@ -1,78 +1,42 @@
-# SCP ACTION
+# Rsync Action
 
 ***By `temper`***
 
-Original by `SRUEDA99` however I've made this work for hugo projects
+Based off `SRUEDA99` scp-action due to the simplicity of that project
 
 ## Overview
-This action to copy the files from your repository to a remote server using **SCP** (Secure Copy Protocol).
 
-## How to use it
-You must give:
-- The `host` which is the public address or the public DNS of the destination server.
-- The `username` that will be used in the remote server.
-- The `destination` folder, where the content will be copied.
-- The `password` for the user or the private `key` in case the connection is based on SSH keys.
+This Github action uses Rsync to copy files over ssh 
 
-Optional:
-- The `origin` folder is set by default as __"./*"__ but you can also specify it.
+## Input Parameters
+
+Required Parameters
+
+* `host` IP/Hostname of target.
+* `username` on the target IP/host that is used to copy files to.
+* `source` - Source file or folder to copy
+* `destination` - the folder where the content will be copied.
+* `key` - the private key used to secure the connection to the target.
+
+Optional Parameters:
+
 - The `port` is set as **22** by default, you can also specify another one.
-- The `passphrase` if necessary.
 
-**IMPORTANT**
-```
-Use Github secrets to give these parameters.
-```
+## Secrets
+
+It is recommended to pass all sensitive values through `secrets`
 
 ## Examples
-**With password**
-```
-name: copy using password
-uses: srueda99/scp-action@v12
-with:
-    port: 22
-    host: ${{ secrets.SERVER_ADDRESS }}
-    destination: "/home/${{ secrets.SERVER_USERNAME }}/"
-    username: ${{ secrets.SERVER_USERNAME }}
-    password: ${{ secrets.SERVER_PASSWORD }}
-```
 
-**With key**
-```
-name: copy using key
-uses: srueda99/scp-action@v12
+```yaml
+name: Copy single file
+uses: tempersama/rsync-action@1.4
 with:
-    port: 22
-    host: ${{ secrets.SERVER_ADDRESS }}
-    destination: "/home/${{ secrets.SERVER_USERNAME }}/"
-    username: ${{ secrets.SERVER_USERNAME }}
+    host: ${{ secrets.host }}
+	source: html/
+	destination: /opt/nginx/website.com
+    username: ${{ secrets.username }}
     key: ${{ secrets.SERVER_KEY }}
+	port: 2222
 ```
 
-**With origin folder**
-```
-name: copy using password
-uses: srueda99/scp-action@v12
-with:
-    port: 22
-    host: ${{ secrets.SERVER_ADDRESS }}
-    origin: "./*"
-    destination: "/home/${{ secrets.SERVER_USERNAME }}/"
-    username: ${{ secrets.SERVER_USERNAME }}
-    password: ${{ secrets.SERVER_PASSWORD }}
-```
-
-**With passphrase**
-```
-name: copy using key
-uses: srueda99/scp-action@v12
-with:
-    port: 22
-    host: ${{ secrets.SERVER_ADDRESS }}
-    destination: "/home/${{ secrets.SERVER_USERNAME }}/"
-    username: ${{ secrets.SERVER_USERNAME }}
-    key: ${{ secrets.SERVER_KEY }}
-    passphrase: ${{ secrets.SERVER_PASSPHRASE }}
-```
-
-_Enjoy it!_

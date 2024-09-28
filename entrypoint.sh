@@ -1,18 +1,24 @@
-#!/bin/sh -l
+#!/bin/sh -l -e
 
-set -e
+# Quick checks for missing parameters
+rc=0
+empty() { echo ERROR: $1 is empty }
 
-# Checking if the key input is not empty
-if [[ "$INPUT_KEY" ]]; then
-    # If it is not empty, it uses the key for the rsync command
-    echo -e "${INPUT_KEY}" > key   # Creates a file with the key content
-    chmod 400 key                  # Set the key as Read-Only
+[[ "$INPUT_HOST" ]]   		&& empty host
+[[ "$INPUT_SOURCE" ]] 		&& empty source
+[[ "$INPUT_DESTINATION" ]] 	&& empty destination
+[[ "$INPUT_USERNME" ]] 		&& empty username
+[[ "$INPUT_KEY" ]] 			&& empty key
 
-	rsync -a -v --stats -e "ssh -p $INPUT_PORT -o StrictHostKeyChecking=no -i key" \
-		"$INPUT_ORIGIN" \
-		"$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
-fi
-time=$(date)
-echo "-----------------------------"
-echo "| Files copied successfully |"
-echo "-----------------------------"
+
+
+echo -e "${INPUT_KEY}" > key
+chmod 400 key
+
+# TODO: make sure we are not just blindly using StrictHostKeyChecking=no
+rsync \
+	-a -v \ --stats \
+	-e "ssh -o StrictHostKeyChecking=no -i key" \
+	--port $INPUT_PORT \
+	"$INPUT_SOURCE" \
+	"$INPUT_USERNAME"@"$INPUT_HOST":"$INPUT_DESTINATION"
