@@ -1,4 +1,4 @@
-# Rsync Action
+# Rsync Copy
 
 ***By `temper`***
 

@@ -1,4 +1,4 @@
-name: 'Rsync Action'
+name: 'Rsync Copy'
 description: 'Copies the files from your repository to a remote host using rsync'
 author: 'temper'
 inputs:
