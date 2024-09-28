@@ -30,7 +30,7 @@ It is recommended to pass all sensitive values through `secrets`
 
 ```yaml
 name: Copy single file
-uses: tempersama/rsync-action@2.1
+uses: tempersama/rsync-action@2.2
 with:
   host: ${{ secrets.host }}
   source: html/

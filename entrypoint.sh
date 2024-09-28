@@ -1,4 +1,6 @@
-#!/bin/sh -l -e
+#!/bin/sh -l
+
+set -e
 
 # Quick checks for missing parameters
 rc=0
