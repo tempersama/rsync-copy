@@ -32,11 +32,11 @@ It is recommended to pass all sensitive values through `secrets`
 name: Copy single file
 uses: tempersama/rsync-action@1.4
 with:
-    host: ${{ secrets.host }}
-	source: html/
-	destination: /opt/nginx/website.com
-    username: ${{ secrets.username }}
-    key: ${{ secrets.SERVER_KEY }}
-	port: 2222
+  host: ${{ secrets.host }}
+  source: html/
+  destination: /opt/nginx/website.com
+  username: ${{ secrets.username }}
+  key: ${{ secrets.SERVER_KEY }}
+  port: 2222
 ```
 
