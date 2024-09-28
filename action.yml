@@ -26,5 +26,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
 branding:
-  icon: 'send'
-  color: 'black'
+  icon: 'file-text'
+  color: 'purple'
+  
